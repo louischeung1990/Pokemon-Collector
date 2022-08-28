@@ -4,14 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override')
-// var session = require('express-session');
-// var passport = require('passport');
+var session = require('express-session');
+var passport = require('passport');
 
 require('dotenv').config();
 
 //connect to the MongoDB with mongoose
 require('./config/database');
-// require('./config/passport');
+require('./config/passport');
 
 var indexRouter = require('./routes/index');
 var pokemonsRouter = require('./routes/pokemons');
@@ -28,7 +28,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'))
+app.use(session({
+  secret: 'PokemonApp',
+  resave: false,
+  saveUninitialized: true
+}));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+//mount all routes here
 app.use('/', indexRouter);
 app.use('/pokemons', pokemonsRouter);
 

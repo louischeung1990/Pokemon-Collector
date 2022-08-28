@@ -4,5 +4,5 @@ module.exports = {
 }
 
 function index(req, res) {
-    res.render('pokemon/index', { title: 'My Pokemon Collection'})
+    res.render('main/index', { title: 'My Pokemon Collection'})
 }
