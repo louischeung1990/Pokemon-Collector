@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>GoogleId</th>
+        <th>Custom Name</th>
+        <th>Date Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% accounts.forEach(function(el) { %>
+        <tr>
+          <td><%= el.name %></td>
+          <td><%= el.email %></td>
+          <td><%= el.googleId %></td>
+          <td><%= el.customName %></td>
+          <td><%= el.dateCreated %></td>
+          <td>
+            <form action="/users/<%= el.id %>?_method=DELETE" method="POST">
+            <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+
+<%- include('../partials/footer') %>

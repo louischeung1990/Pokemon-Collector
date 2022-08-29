@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const timeNow = function() {
+  return new Date(Date.now());
+}
 
 const rosterSchema = new Schema({
     rostername: {
@@ -16,6 +19,10 @@ var userSchema = new mongoose.Schema({
     email: String,
     googleId: String,
     customName: String,
+    dateCreated: {
+      type: Date,
+      default: timeNow,
+      },
     avatar: String,
     pokemonCollected: [{type: Schema.Types.ObjectId, ref: 'Pokemon'}],
     rosters: [rosterSchema]

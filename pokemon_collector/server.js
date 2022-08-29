@@ -14,6 +14,7 @@ require('./config/database');
 require('./config/passport');
 
 var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 var pokemonsRouter = require('./routes/pokemons');
 
 var app = express();
@@ -39,6 +40,7 @@ app.use(passport.session());
 
 //mount all routes here
 app.use('/', indexRouter);
+app.use('/users', usersRouter);
 app.use('/pokemons', pokemonsRouter);
 
 // catch 404 and forward to error handler
