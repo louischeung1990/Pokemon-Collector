@@ -7,6 +7,8 @@ const pokemonSchema = new Schema({
         required: true
     },
     customName: String,
+    //pokedex order
+    pokemonId: Number,
     type: [{
         type: String,
     }],

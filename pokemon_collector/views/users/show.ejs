@@ -1,6 +1,23 @@
 <%- include('../partials/header') %>
 
-<table>
+<nav id="nav-bar-1">
+  <span id="nav-title"><%= title %></span>
+  <a href="/logout" id="logout"><span class="material-symbols-outlined">logout</span> Logout</a>
+</nav>
+<nav id="nav-bar-2"> 
+  <a href="/users" id="get-user-view" <%- title === 'Trainer Details' ? 'class="active"' : '' %>>Trainer Details</a>
+  <a href="/pokemons" id="get-pokemon-view" <%- title === 'My Pokemon Collection' ? 'class="active"' : '' %>>My Pokemon</a>
+  <a href="/rosters" id="get-roster-view" <%- title === 'My Rosters' ? 'class="active"' : '' %>>My Rosters</a>
+</nav>
+
+<main id="user-view">
+  <h1>hello</h1>
+ 
+  <h1> <%= account1.customName %></h1>
+
+  <br><img src=<%= account.avatar %>>
+<div id="userInfo">
+  <table>
     <thead>
       <tr>
         <th>Name</th>
@@ -8,16 +25,18 @@
         <th>GoogleId</th>
         <th>Custom Name</th>
         <th>Date Created</th>
+        <th>Avatar</th>
       </tr>
     </thead>
     <tbody>
-      <% accounts.forEach(function(el) { %>
+      <% account.forEach(function(el) { %>
         <tr>
           <td><%= el.name %></td>
           <td><%= el.email %></td>
           <td><%= el.googleId %></td>
           <td><%= el.customName %></td>
           <td><%= el.dateCreated %></td>
+          <td><%= el.avatar %></td>
           <td>
             <form action="/users/<%= el.id %>?_method=DELETE" method="POST">
             <button type="submit">Delete</button>
@@ -27,6 +46,8 @@
         <% }); %>
       </tbody>
     </table>
-
+    <a href="/users/">Edit Trainer Details</a>
+</div>
+</main>
 
 <%- include('../partials/footer') %>

@@ -19,7 +19,7 @@ router.get('/oauth2callback', passport.authenticate('google', {failureRedirect: 
   if (req.user.pokemonCollected.length === 0) {
     res.render('users/new', { title: 'Ah, a new trainer!'})
   } else {
-  res.redirect('./pokemons')
+  res.redirect('/users')
   }
 })
 
