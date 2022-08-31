@@ -22,6 +22,9 @@ const pokemonSchema = new Schema({
         'special-attack' : {type: Number},
         'special-defense' : {type: Number},
         speed : {type: Number},
-    }]},
+    }], _id: false},
     sprite: String,
+    spriteSmall: String,
 })
+
+module.exports = mongoose.model('Pokemon', pokemonSchema)

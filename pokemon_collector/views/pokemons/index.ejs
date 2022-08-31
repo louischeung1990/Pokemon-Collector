@@ -1,24 +1,13 @@
 <%- include('../partials/header') %>
-<nav id="nav-bar-1">
-    <span id="nav-title"><%= title %></span>
-    <!-- the line below is for debugging (just to check that you can't have more than one trainer account per gmail address) -->
-    <!-- <a href="/users">Check account</a> -->
-    <a href="/logout" id="logout"><span class="material-symbols-outlined">logout</span> Logout</a>
-</nav>
-<nav id="nav-bar-2"> 
-    <a href="/pokemons" id="get-pokemon-view" >My Pokemon</a>
-    <a href="/rosters" id="get-roster-view" >My Rosters</a>
-</nav>
-<main id="user-view">
-<div id="userInfo">
 
-    <a href="/users/">Edit Trainer Details</a>
-</div>
-
-</main>
-
+<form action="/pokemons/new" method="GET">
+    <div >
+      <input type="text" name="name" placeholder="Enter a pokemon name or ID no." autocomplete="off"
+      size="30">
+      <span >
+        <button type="submit">Find</button>
+      </span>
+    </div>
+  </form>
     
-    
-
-    <a 
 <%- include('../partials/footer') %>

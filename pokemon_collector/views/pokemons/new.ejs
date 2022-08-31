@@ -1,0 +1,67 @@
+<%- include('../partials/header') %>
+
+<form method="POST" action="/users/<%= account.googleId%>/pokemons/<%= pokemon.id %>">
+<div>
+    <span>Name:</span>
+    <span><%=pokemon.name%></span> 
+</div>
+<div>
+    <span>ID no.:</span>
+    <span><%=pokemon.pokemonId%></span> 
+</div>
+<div> 
+    <span>Type:</span> 
+    <% pokemon.type.forEach(function(el) { %>
+        <span> <%= el %></span>
+    <% }) %>
+</div>
+<div>
+    <span>Available moves:</span>
+    <select name="moveSet">
+        <% pokemonData.moves.forEach(function(el) { %>
+            <option value="<%=el.move.name%>"><%=el.move.name%></option>
+        <% }) %>
+    </select>
+</div>
+<div>
+    <span>Stats:</span>
+    <!-- tried to use `for (let key in el)` here to call key-value pairs but pokemon.stats 
+        inherits other properties and builds a very large table with irrelevant info-->
+    <table>
+        <tr>
+            <td>HP</td>
+            <td><%= pokemon.stats[0].hp %></td>
+        </tr>
+        <tr>
+            <td>Attack</td>
+            <td><%= pokemon.stats[1].attack %></td>
+        </tr>
+        <tr>
+            <td>Defense</td>
+            <td><%= pokemon.stats[2].defense %></td>
+        </tr>
+        <tr>
+            <td>Special-Attack</td>
+            <td><%= pokemon.stats[3]['special-attack'] %></td>
+        </tr>
+        <tr>
+            <td>Special-Defense</td>
+            <td><%= pokemon.stats[4]['special-defense'] %></td>
+        </tr>
+        <tr>
+            <td>Speed</td>
+            <td><%= pokemon.stats[5].speed %></td>
+        </tr>        
+    </table>
+</div>
+
+<img src='<%= pokemon.sprite %>'>
+<img class="sprite" src="<%= pokemon.spriteSmall %>">
+
+<input type="submit" value="Add Pokemon">
+</form>
+
+<%- include('../partials/footer') %>
+
+
+

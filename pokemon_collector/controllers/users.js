@@ -4,14 +4,14 @@ module.exports = {
     index,
     new: newUser,
     create,
+    show,
+    update,
 }
 
+//this function is currently not in use, will be used for admin account in the future
 function index(req, res) {
-    console.log(req.user)
     User.find({googleId: req.user.googleId}, function(err, account) {
-        console.log(account.name)
-        let account1 = req.user
-        res.render('./users/show', {title: 'Trainer Details', account, account1})
+        res.render('./users/show', {title: 'Trainer Details', account})
     })
 }
 
@@ -27,6 +27,27 @@ function create(req, res) {
             console.log(err)
             return res.render('users/new', { title: 'Ah, a new trainer!'});
         }
-        res.redirect('/users')
+        let id = req.user.googleId
+        res.redirect(`/users/${id}`)
+    })
+}
+
+function show(req, res) {
+    let account = req.user;
+    let dateCreated = account.dateCreated.toISOString().slice(0,10);
+    res.render('./users/show', {title: 'Trainer Details', account, dateCreated})
+}
+
+function update(req, res) {
+    User.find({googleId: req.user.googleId}, function(err, account) {
+        req.user.customName = req.body.customName
+        req.user.save(function(err) {
+            if (err) {
+                console.log(err)
+                return res.render('./users/show', {title: 'Trainer Details', account, dateCreated});
+            }
+            let id = req.user.googleId
+            res.redirect(`/users/${req.user.googleId}`)
+        })
     })
 }

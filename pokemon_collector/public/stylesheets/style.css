@@ -14,21 +14,26 @@ a {
 #nav-bar-1 {
   width: 100%;
   height: 100px;
-  display:inline-block;
+  display: flex;
+  align-items: center;
   background-color: antiquewhite;
 }
 
 #nav-title {
-  font-size: 26px;
+  font-size: 50px;
+  margin-left: 100px;
 }
 
 #logout {
   text-decoration: none;
   font-size: 26px;
+  margin-left: auto;
+  margin-right: 50px;
 }
 
 #nav-bar-2 {
-  display:inline-block;
+  display: flex;
+  justify-content: space-evenly;
   font-size: 30px;
 }
 
@@ -60,24 +65,16 @@ a {
   box-shadow: 0 0 10px red;
 }
 
-
-/* input[type=checkbox] {
-  display:none;
-}
-input#thing1[type=checkbox] + label
-{
-    background-image: url("https://archives.bulbagarden.net/media/upload/e/e1/Red_and_Pikachu_Artwork.png");
-    height: 240px;
-    width: 200px;
-    display:inline-block;
-    padding: 0 0 0 0px;
+.avatar-inactive {
+  display:inline;
+  height: 340px;
+  width: 280px;
+  margin: 30px 15px 15px 15px; 
+  border: 5px solid black;
+  border-radius: 5px;
 }
 
-input#thing2[type=checkbox] + label
-{
-    background-image: url("https://archives.bulbagarden.net/media/upload/3/32/Leaf_and_Squirtle_artwork.png");
-    height: 240px;
-    width: 200px;
-    display:inline-block;
-    padding: 0 0 0 0px;
-} */
+.sprite {
+  height: 200px;
+  width: 200px
+}

@@ -10,3 +10,12 @@
     <title><%= title %></title>
 </head>
 <body>
+    <nav id="nav-bar-1">
+        <div id="nav-title"> My Pokemon Collection </div>
+        <a href="/logout" id="logout"><span class="material-symbols-outlined">logout</span> Logout</a>
+    </nav>
+    <nav id="nav-bar-2"> 
+        <a href="/users/<%=account.googleId%>" id="get-user-view" <%- title === 'Trainer Details' ? 'class="active"' : '' %>>Trainer Details</a>
+        <a href="/pokemons" id="get-pokemon-view" <%- title === 'My Pokemon' ? 'class="active"' : '' %>>My Pokemon</a>
+        <a href="/rosters" id="get-roster-view" <%- title === 'My Rosters' ? 'class="active"' : '' %>>My Rosters</a>
+    </nav>

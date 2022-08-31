@@ -15,11 +15,13 @@ router.get('/auth/google', passport.authenticate (
 
 //AFTER user signs in with Google (based on the GOOGLE_CALLBACK)
 router.get('/oauth2callback', passport.authenticate('google', {failureRedirect: '/'}), function(req, res) {
-  console.log(req.user)
   if (req.user.pokemonCollected.length === 0) {
     res.render('users/new', { title: 'Ah, a new trainer!'})
   } else {
-  res.redirect('/users')
+    //can also do this if it's not working:
+    // let id = req.user.googleId
+    //     res.redirect(`/users/${id}`)
+  res.redirect(`/users/${req.user.googleId}`)
   }
 })
 
