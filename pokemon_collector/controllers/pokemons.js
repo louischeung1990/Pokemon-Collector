@@ -5,7 +5,7 @@ const Pokemon = require('../models/pokemon')
 module.exports = {
     index,
     new: newPokemon,
-    create,
+    addToUser,
 }
 
 function index(req, res) {
@@ -38,17 +38,25 @@ function newPokemon(req, res) {
                     console.log(err)
                     res.redirect('/pokemons')
                 }
-                console.log(`------------------------------------${pokemon}`)
                 res.render( 'pokemons/new', {pokemonData, title: 'My Pokemon', account, pokemon});
             })
         }
       );
 }
 
-function create(req, res) {
-    console.log(req.body)
-    
-    Pokemons.create(req.body, function (err, pokemon) {
-        res.redirect('/performers/new');
-      });
+function addToUser(req, res) {
+    Pokemon.findById(req.params.pokemonId, function(err, pokemon) {
+        pokemon.moveSet = req.body.moveSet
+        pokemon.customName = req.body.customName
+        pokemon.save(function (err) {
+            req.user.pokemonCollected.push(pokemon)
+            req.user.save(function(err) {
+                if (err) {
+                    console.log(err)
+                    return res.render('pokemons/index', { title: 'My Pokemon', account})
+                }
+                res.redirect('/pokemons/')
+            })
+        })
+    })
 }

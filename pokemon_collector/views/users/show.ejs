@@ -1,23 +1,23 @@
 <%- include('../partials/header') %>
 
-<main id="user-view">
-  <h1>Welcome back, <%= account.customName %>!</h1>
-
-  <div>
-    <img class="avatar-inactive" src=<%= account.avatar %>>
-  </div>
-  <div>
-    <p>Number of Pokemon Collected:</p>
+<main id="trainer-card">
+  <div class="trainer-top">
+    <h1>Welcome back, <%= account.customName %>!</h1>
+    <div>
+      <img class="userAvatar" src=<%= account.avatar %>>
+    </div>
+    <p>Number of Pokemon Collected: <span><%= account.pokemonCollected.length %></span></p>
     <p>Adventure began on: <%= dateCreated %></p>
   </div>
-  
-  <br><br><h2>Would you like to change your Trainer Details?</h2>
-  <form action="/users/<%= account.googleId %>?_method=PUT" method="POST">
-    <label>Change Trainer Name:</label>
-    <input type="text" name="customName" autocomplete="off">
-  <br><input type="submit" value="Submit changes">
-</form>
-</div>
+
+  <div class="trainer-edit">
+    <h3>Would you like to change your Trainer Details?</h3>
+    <form action="/users/<%= account.googleId %>?_method=PUT" method="POST">
+      <label>Change Trainer Name:</label>
+      <input type="text" name="customName" autocomplete="off">
+      <input id="trainer-edit-submit" type="submit" value="Submit changes">
+    </form>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>

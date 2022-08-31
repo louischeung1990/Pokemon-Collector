@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
+<form method="POST" action="/pokemons/<%= pokemon.id %>/users/<%= account.googleId%>">
 
-<form method="POST" action="/users/<%= account.googleId%>/pokemons/<%= pokemon.id %>">
 <div>
     <span>Name:</span>
     <span><%=pokemon.name%></span> 
@@ -14,14 +14,6 @@
     <% pokemon.type.forEach(function(el) { %>
         <span> <%= el %></span>
     <% }) %>
-</div>
-<div>
-    <span>Available moves:</span>
-    <select name="moveSet">
-        <% pokemonData.moves.forEach(function(el) { %>
-            <option value="<%=el.move.name%>"><%=el.move.name%></option>
-        <% }) %>
-    </select>
 </div>
 <div>
     <span>Stats:</span>
@@ -54,11 +46,33 @@
         </tr>        
     </table>
 </div>
-
 <img src='<%= pokemon.sprite %>'>
 <img class="sprite" src="<%= pokemon.spriteSmall %>">
 
-<input type="submit" value="Add Pokemon">
+
+<label>Name your Pokemon:</label>
+<input type="text" name="customName" autocomplete="off">
+
+<div>
+    <span>Available moves:</span>
+    <select id="movesSelected" name="moveSet" size="8" multiple>
+        <% pokemonData.moves.forEach(function(el) { %>
+            <option value="<%=el.move.name%>"><%=el.move.name%></option>
+        <% }) %>
+    </select>
+    <span id="submitMoves" class="material-symbols-outlined">
+        add_circle
+    </span>
+    <br><label>Selected Moves:</label>
+    <!-- <input id="movesChoice0" type="text" name='moveSet' style="display:none">
+    <input id="movesChoice1" type="text" name='moveSet' style="display:none">
+    <input id="movesChoice2" type="text" name='moveSet' style="display:none">
+    <input id="movesChoice3" type="text" name='moveSet' style="display:none"> -->
+    <textarea id="showMovesChoice" type="text" style="height:64px"></textarea>
+
+
+    <input type="submit" value="Add Pokemon">
+</div>
 </form>
 
 <%- include('../partials/footer') %>

@@ -1,0 +1,7 @@
+#submitMoves:hover {
+    cursor: pointer;
+  }
+  
+  #showMovesChoice {
+    resize: none;
+  }
