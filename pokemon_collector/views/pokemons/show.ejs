@@ -1,0 +1,62 @@
+<%- include('../partials/header') %>
+<form method="POST" action="/pokemons/<%= pokemon.id %>?_method=PUT">
+
+    <div>
+        <span>Name:</span>
+        <span><%=pokemon.name%></span> 
+    </div>
+    <div>
+        <span>Nickname:</span>
+        <span><%=pokemon.customName%></span> 
+    </div>
+    <div>
+        <span>ID no.:</span>
+        <span><%=pokemon.pokemonId%></span> 
+    </div>
+    <div> 
+        <span>Type:</span> 
+        <% pokemon.type.forEach(function(el) { %>
+            <span> <%= el %></span>
+        <% }) %>
+    </div>
+    <div>
+        <span>Stats:</span>
+        <table>
+            <tr>
+                <td>HP</td>
+                <td><%= pokemon.stats[0].hp %></td>
+            </tr>
+            <tr>
+                <td>Attack</td>
+                <td><%= pokemon.stats[1].attack %></td>
+            </tr>
+            <tr>
+                <td>Defense</td>
+                <td><%= pokemon.stats[2].defense %></td>
+            </tr>
+            <tr>
+                <td>Special-Attack</td>
+                <td><%= pokemon.stats[3]['special-attack'] %></td>
+            </tr>
+            <tr>
+                <td>Special-Defense</td>
+                <td><%= pokemon.stats[4]['special-defense'] %></td>
+            </tr>
+            <tr>
+                <td>Speed</td>
+                <td><%= pokemon.stats[5].speed %></td>
+            </tr>        
+        </table>
+    </div>
+    <img src='<%= pokemon.sprite %>'>
+
+    <label>Change your Pokemon's Name:</label>
+    <input type="text" name="customName" autocomplete="off">
+    
+    <input type="submit" value="Change Pokemon Name">
+    </form>
+    <form action="/pokemons/<%= pokemon.id %>?_method=DELETE" method="POST">
+        <p>Are you sure? <%= pokemon.name %> will be gone forever...</p>
+        <button type="submit">Release</button>
+    </form>
+<%- include('../partials/footer') %>

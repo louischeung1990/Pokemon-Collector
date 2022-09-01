@@ -47,8 +47,6 @@
     </table>
 </div>
 <img src='<%= pokemon.sprite %>'>
-<img class="sprite" src="<%= pokemon.spriteSmall %>">
-
 
 <label>Name your Pokemon:</label>
 <input type="text" name="customName" autocomplete="off">
@@ -64,18 +62,9 @@
         add_circle
     </span>
     <br><label>Selected Moves:</label>
-    <!-- <input id="movesChoice0" type="text" name='moveSet' style="display:none">
-    <input id="movesChoice1" type="text" name='moveSet' style="display:none">
-    <input id="movesChoice2" type="text" name='moveSet' style="display:none">
-    <input id="movesChoice3" type="text" name='moveSet' style="display:none"> -->
     <textarea id="showMovesChoice" type="text" style="height:64px"></textarea>
-
-
     <input type="submit" value="Add Pokemon">
 </div>
 </form>
 
 <%- include('../partials/footer') %>
-
-
-

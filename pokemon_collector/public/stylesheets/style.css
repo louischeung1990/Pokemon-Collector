@@ -24,6 +24,11 @@ a {
   margin-left: 100px;
 }
 
+#nav-title-image {
+  width: 40px;
+  height: 40px;
+}
+
 #logout {
   text-decoration: none;
   font-size: 26px;

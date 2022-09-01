@@ -1,14 +1,39 @@
 <%- include('../partials/header') %>
 
-<main class="left-bar">
-<form action="/pokemons/new" method="GET">
-    <div >
+<main id="pokemon-index-view">
+<div class="pokemon-left-bar">
+<form id="search-pokemon" action="/pokemons/new" method="GET">
+    <div>
       <input type="text" name="name" placeholder="Enter a pokemon name or ID no." autocomplete="off"
-      size="30">
+      size="25">
       <span >
         <button type="submit">Find</button>
       </span>
     </div>
   </form>
+</div>
+<div id="pokemon-all">
+  <table class="pokemonIndex">
+  
+    <% if (account.pokemonCollected.length) { %>
+      <% let i = 0 %>
+      <% while (i < account.pokemonCollected.length) { %>
+        <% for (let j = 0; j < noRows; j++) { %>
+          <tr>
+            <% for (let k = 0; k < 6; k++) { %>
+              <td class="<%= pkmnType[i] %> pokemonIndex">
+                <% if (i < imageArray.length) { %>
+                  <a href="/pokemons/<%= url[i] %>"><img class="sprite" src="<%= imageArray[i] %>"></a>
+                  <span><%= pkmnName[i] %></span>
+                <% } %>
+              </td>
+              <% i++ %>
+            <% } %>
+          </tr>
+        <% } %>
+      <% } %>
+    <% } %>
+  </table>
+</div>
 </main>
 <%- include('../partials/footer') %>

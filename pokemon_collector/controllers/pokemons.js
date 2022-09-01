@@ -1,16 +1,33 @@
 const request = require('request');
 const rootURL = 'https://pokeapi.co/api/v2/';
 const Pokemon = require('../models/pokemon')
+const User = require('../models/user')
 
 module.exports = {
     index,
     new: newPokemon,
     addToUser,
+    show,
+    update,
+    delete: deletePokemon,
 }
 
 function index(req, res) {
-    let account = req.user
-    res.render('pokemons/index', { title: 'My Pokemon', account})
+    User.findById(req.user.id).populate('pokemonCollected').exec(function(err, account){
+        let noRows = Math.ceil(account.pokemonCollected.length/6)
+        let imageArray = []
+        let pkmnType = []
+        let url = []
+        let pkmnName = []
+        for (i = 0; i < account.pokemonCollected.length; i++) {
+            imageArray[i] = account.pokemonCollected[i].spriteSmall
+            pkmnType[i] = account.pokemonCollected[i].type[0]
+            url[i] = account.pokemonCollected[i].id
+            pkmnName[i] = account.pokemonCollected[i].name
+        }
+        res.render('pokemons/index', { title: 'My Pokemon', account, noRows, imageArray, pkmnType,
+         url, pkmnName})
+    })
 }
 
 function newPokemon(req, res) {
@@ -58,5 +75,31 @@ function addToUser(req, res) {
                 res.redirect('/pokemons/')
             })
         })
+    })
+}
+
+function show(req, res) {
+    let account = req.user
+    Pokemon.findById(req.params.id, function (err, pokemon) {
+        res.render('pokemons/show', { title: 'My Pokemon', pokemon, account})
+    })
+}
+
+function update(req, res) {
+    Pokemon.findById(req.params.id, function(err, pokemon) {
+        pokemon.customName = req.body.customName
+        pokemon.save(function (err) {
+            if (err) {
+                console.log(err)
+                return res.render('./pokemons/show', {title: 'My Pokemon', pokemon})
+            }
+            res.redirect(`/pokemons/${pokemon.id}`)
+        })
+    })
+}
+
+function deletePokemon(req, res) {
+    Pokemon.findOneAndDelete({_id: req.params.id}, function(err, pokemon) {
+        res.redirect('/pokemons')
     })
 }
