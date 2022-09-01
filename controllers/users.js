@@ -10,9 +10,9 @@ module.exports = {
 
 //this function is currently not in use, will be used for admin account in the future
 function index(req, res) {
-    User.find({googleId: req.user.googleId}, function(err, account) {
-        res.render('./users/show', {title: 'Trainer Details', account})
-    })
+    // User.find({googleId: req.user.googleId}, function(err, account) {
+    //     res.render('users/show', {title: 'Trainer Details', account})
+    // })
 }
 
 function newUser(req, res) {
@@ -33,6 +33,13 @@ function create(req, res) {
 }
 
 function show(req, res) {
+    if (!req.user) {
+        return res.redirect('/auth/google')
+     }
+console.log(`log no1`)
+    
+    console.log(req.user)
+    console.log(`----------------------------------log2`)
     let account = req.user;
     let dateCreated = account.dateCreated.toISOString().slice(0,10);
     res.render('./users/show', {title: 'Trainer Details', account, dateCreated})
