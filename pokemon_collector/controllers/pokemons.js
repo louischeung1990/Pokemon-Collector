@@ -99,7 +99,19 @@ function update(req, res) {
 }
 
 function deletePokemon(req, res) {
-    Pokemon.findOneAndDelete({_id: req.params.id}, function(err, pokemon) {
-        res.redirect('/pokemons')
+    console.log(req.user)
+    let idx = req.user.pokemonCollected.findIndex(function(pokemon) {
+        console.log(pokemon.id)
+
+        console.log(req.params.id)
+        let id = pokemon._id.toString()
+        return id == req.params.id;
+    })
+    console.log(idx)
+    req.user.pokemonCollected.splice(idx, 1);
+    req.user.save(function (err) {  
+        Pokemon.findOneAndDelete({_id: req.params.id}, function(err, pokemon) {
+            res.redirect('/pokemons')
+        })
     })
 }
