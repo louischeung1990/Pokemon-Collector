@@ -1,3 +1,8 @@
+body {
+  min-height: 100vh;
+  background-image: url('../images/User_Show_Background.jpg');
+}
+
 .userAvatar {
     display:inline;
     height: 340px;

@@ -11,27 +11,32 @@
     <title><%= title %></title>
 </head>
 <body>
-
-    <h1><%= title %></h1>
-
-<form action="/users" method="POST">
-    <div>
-        <label>Choose an avatar</label>
+    <div id="new-trainer-card">
+        <div id="new-trainer-card-left">
+            <h1><%= title %></h1>
+            <form action="/users" method="POST">
+                <div>
+                    <h2>Choose an avatar</h2>
+                </div>
+                <span>
+                    <img class="avatar" src="/images/Red_and_Pikachu_Artwork.png" alt="Avatar 1">
+                </span>
+                <span>
+                    <img class="avatar" src="/images/Leaf_and_Squirtle_artwork.png" alt="Avatar 2">
+                    <input id="avatarChoice" type="text"  name='avatar' style="display:none">
+                </span>
+                <div id="enter-trainer-name">
+                    <label>What is your trainer name?</label>
+                    <input type="text" name="customName" autocomplete="off">
+                </div>
+                <div id="submit-trainer-name">
+                    <button type="submit">Finished</button>
+                </div>
+            </form>
+        </div>
+        <div id="new-trainer-card-right">
+            <img src="/images/Prof_Oak.png">
+        </div>
     </div>
-    <span>
-        
-        <img class="avatar" src="images/Red_and_Pikachu_Artwork.png" alt="Avatar 1">
-    </span>
-    <span>
-        <img class="avatar" src="images/Leaf_and_Squirtle_artwork.png" alt="Avatar 2">
-        <input id="avatarChoice" type="text"  name='avatar' style="display:none">
-
-    </span>
-    <div>
-        <label>What is your trainer name?</label>
-        <input type="text" name="customName" autocomplete="off">
-        <button type="submit">Finished</button>
-    </div>
-</form>
 </body>
 </html>

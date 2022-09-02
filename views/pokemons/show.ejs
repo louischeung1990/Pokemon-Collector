@@ -1,62 +1,104 @@
-<%- include('../partials/header') %>
-<form method="POST" action="/pokemons/<%= pokemon.id %>?_method=PUT">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/stylePokemonNew.css'/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
 
-    <div>
-        <span>Name:</span>
-        <span><%=pokemon.name%></span> 
-    </div>
-    <div>
-        <span>Nickname:</span>
-        <span><%=pokemon.customName%></span> 
-    </div>
-    <div>
-        <span>ID no.:</span>
-        <span><%=pokemon.pokemonId%></span> 
-    </div>
-    <div> 
-        <span>Type:</span> 
-        <% pokemon.type.forEach(function(el) { %>
-            <span> <%= el %></span>
-        <% }) %>
-    </div>
-    <div>
-        <span>Stats:</span>
-        <table>
-            <tr>
-                <td>HP</td>
-                <td><%= pokemon.stats[0].hp %></td>
-            </tr>
-            <tr>
-                <td>Attack</td>
-                <td><%= pokemon.stats[1].attack %></td>
-            </tr>
-            <tr>
-                <td>Defense</td>
-                <td><%= pokemon.stats[2].defense %></td>
-            </tr>
-            <tr>
-                <td>Special-Attack</td>
-                <td><%= pokemon.stats[3]['special-attack'] %></td>
-            </tr>
-            <tr>
-                <td>Special-Defense</td>
-                <td><%= pokemon.stats[4]['special-defense'] %></td>
-            </tr>
-            <tr>
-                <td>Speed</td>
-                <td><%= pokemon.stats[5].speed %></td>
-            </tr>        
-        </table>
-    </div>
-    <img src='<%= pokemon.sprite %>'>
+    <script defer src="/javascripts/main.js"></script>
+    <title><%= title %></title>
+</head>
+<body>
+    <nav id="nav-bar-1">
+        <span id="nav-title"><img id="nav-title-image" src="/images/SugimoriPokeBall.png"> My Pokemon Collection </span>
+        <a href="/logout" id="logout"><span class="material-symbols-outlined">logout</span> Logout</a>
+    </nav>
+    <nav id="nav-bar-2"> 
+        <a href="/users/<%=account.googleId%>" id="get-user-view" <%- title === 'Trainer Details' ? 'class="active"' : '' %>>Trainer Details</a>
+        <a href="/pokemons" id="get-pokemon-view" <%- title === 'My Pokemon' ? 'class="active"' : '' %>>My Pokemon</a>
+        <a href="/rosters" id="get-roster-view" <%- title === 'My Rosters' ? 'class="active"' : '' %>>My Rosters</a>
+    </nav>
 
-    <label>Change your Pokemon's Name:</label>
-    <input type="text" name="customName" autocomplete="off">
-    
-    <input type="submit" value="Change Pokemon Name">
-    </form>
-    <form action="/pokemons/<%= pokemon.id %>?_method=DELETE" method="POST">
-        <p>Are you sure? <%= pokemon.name %> will be gone forever...</p>
-        <button type="submit">Release</button>
-    </form>
+<main class="main-view">
+<div id="pokemon-new-card" class="<%= pokemon.type[0] %>">
+    <div id="pokemon-sprite-image">
+        <img src='<%= pokemon.sprite %>'>
+    </div>
+    <div id="pokemon-attributes">
+        <div>
+            <span>Name:</span>
+            <span><%=pokemon.name%></span> 
+        </div>
+        <div>
+            <span>Nickname:</span>
+            <span><%=pokemon.customName%></span> 
+        </div>
+        <div>
+            <span>ID no.:</span>
+            <span><%=pokemon.pokemonId%></span> 
+        </div>
+        <div> 
+            <span>Type:</span> 
+            <% pokemon.type.forEach(function(el) { %>
+                <span> <%= el %></span>
+            <% }) %>
+        </div>
+        <div>
+            <span>Stats:</span>
+            <table>
+                <tr>
+                    <td>HP</td>
+                    <td><%= pokemon.stats[0].hp %></td>
+                </tr>
+                <tr>
+                    <td>Attack</td>
+                    <td><%= pokemon.stats[1].attack %></td>
+                </tr>
+                <tr>
+                    <td>Defense</td>
+                    <td><%= pokemon.stats[2].defense %></td>
+                </tr>
+                <tr>
+                    <td>Special-Attack</td>
+                    <td><%= pokemon.stats[3]['special-attack'] %></td>
+                </tr>
+                <tr>
+                    <td>Special-Defense</td>
+                    <td><%= pokemon.stats[4]['special-defense'] %></td>
+                </tr>
+                <tr>
+                    <td>Speed</td>
+                    <td><%= pokemon.stats[5].speed %></td>
+                </tr>        
+            </table>
+        </div>
+    </div>
+
+    <div id="pokemon-name-change">
+        <form method="POST" action="/pokemons/<%= pokemon.id %>?_method=PUT">
+            <div>
+                <label>Change your Pokemon's Name:</label>
+                <input type="text" name="customName" autocomplete="off">
+                <input type="submit" value="Change Pokemon Name">
+            </div>
+        </form>
+    </div>
+    <div id="pokemon-release">
+        <form action="/pokemons/<%= pokemon.id %>?_method=DELETE" method="POST">
+            <div>
+                <p>Are you sure? <%= pokemon.name %> will be gone forever...</p>
+                <button type="submit">Release</button>
+            </div>
+        </form>
+    </div>
+</div>
+</main>
+
 <%- include('../partials/footer') %>

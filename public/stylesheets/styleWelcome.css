@@ -1,0 +1,48 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-image: url('../images/Front_Page_Back_2.jpg');
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 640px 1fr;
+    grid-template-rows:  200px 400px auto;
+  }
+
+  #welcome-box {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    box-sizing: border-box;
+    height: 400px;
+    width: 640px;
+    border: 5px solid black;
+    border-radius: 5px;
+    background-image: url('../images/Front_Page.png');
+    background-size: 640px 400px;
+  }
+  
+  #welcome-box h1 {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Bebas Neue', cursive;
+  }
+  
+  #login-button {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 1px solid #808080;
+    border-radius: 10px;
+    width: 300px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    background-color:#d9d9d9;
+    margin: 0 auto;
+  }
+  
+  #login {
+    text-decoration: none;
+    font-size: 30px;
+    margin: 10px 10px 10px 10px;
+  }

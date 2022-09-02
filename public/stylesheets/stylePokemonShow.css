@@ -43,7 +43,14 @@ body {
   flex-direction: column;
 }
 
-#pokemon-moves {
+#pokemon-name-change {
+  grid-area: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#pokemon-release {
   grid-area: right;
   display: flex;
   flex-direction: column;

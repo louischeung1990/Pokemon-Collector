@@ -1,70 +1,112 @@
-<%- include('../partials/header') %>
-<form method="POST" action="/pokemons/<%= pokemon.id %>/users/<%= account.googleId%>">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/stylePokemonNew.css'/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <script defer src="/javascripts/main.js"></script>
+    <title><%= title %></title>
+</head>
 
-<div>
-    <span>Name:</span>
-    <span><%=pokemon.name%></span> 
-</div>
-<div>
-    <span>ID no.:</span>
-    <span><%=pokemon.pokemonId%></span> 
-</div>
-<div> 
-    <span>Type:</span> 
-    <% pokemon.type.forEach(function(el) { %>
-        <span> <%= el %></span>
-    <% }) %>
-</div>
-<div>
-    <span>Stats:</span>
-    <!-- tried to use `for (let key in el)` here to call key-value pairs but pokemon.stats 
+<body>
+    <nav id="nav-bar-1">
+        <span id="nav-title"><img id="nav-title-image" src="/images/SugimoriPokeBall.png"> My Pokemon Collection </span>
+        <a href="/logout" id="logout"><span class="material-symbols-outlined">logout</span> Logout</a>
+    </nav>
+    <nav id="nav-bar-2"> 
+        <a href="/users/<%=account.googleId%>" id="get-user-view" <%- title === 'Trainer Details' ? 'class="active"' : '' %>>Trainer Details</a>
+        <a href="/pokemons" id="get-pokemon-view" <%- title === 'My Pokemon' ? 'class="active"' : '' %>>My Pokemon</a>
+        <a href="/rosters" id="get-roster-view" <%- title === 'My Rosters' ? 'class="active"' : '' %>>My Rosters</a>
+    </nav>
+
+<main class="main-view">
+<div id="pokemon-new-card" class="<%= pokemon.type[0] %>">
+    <div id="pokemon-sprite-image">
+        <img src='<%= pokemon.sprite %>'>
+    </div>
+    <div id="pokemon-attributes">
+    <div>
+        <span>Name:</span>
+        <span><%=pokemon.name%></span> 
+    </div>
+    <div>
+        <span>ID no.:</span>
+        <span><%=pokemon.pokemonId%></span> 
+    </div>
+    <div> 
+        <span>Type:</span> 
+            <% pokemon.type.forEach(function(el) { %>
+                <span> <%= el %></span>
+            <% }) %>
+    </div>
+    <div>
+        <span>Stats:</span>
+        <!-- tried to use `for (let key in el)` here to call key-value pairs but pokemon.stats 
         inherits other properties and builds a very large table with irrelevant info-->
-    <table>
-        <tr>
-            <td>HP</td>
-            <td><%= pokemon.stats[0].hp %></td>
-        </tr>
-        <tr>
-            <td>Attack</td>
-            <td><%= pokemon.stats[1].attack %></td>
-        </tr>
-        <tr>
-            <td>Defense</td>
-            <td><%= pokemon.stats[2].defense %></td>
-        </tr>
-        <tr>
-            <td>Special-Attack</td>
-            <td><%= pokemon.stats[3]['special-attack'] %></td>
-        </tr>
-        <tr>
-            <td>Special-Defense</td>
-            <td><%= pokemon.stats[4]['special-defense'] %></td>
-        </tr>
-        <tr>
-            <td>Speed</td>
-            <td><%= pokemon.stats[5].speed %></td>
-        </tr>        
-    </table>
-</div>
-<img src='<%= pokemon.sprite %>'>
+            <table>
+                <tr>
+                    <td>HP</td>
+                    <td><%= pokemon.stats[0].hp %></td>
+                </tr>
+                <tr>
+                    <td>Attack</td>
+                    <td><%= pokemon.stats[1].attack %></td>
+                </tr>
+                <tr>
+                    <td>Defense</td>
+                    <td><%= pokemon.stats[2].defense %></td>
+                </tr>
+                <tr>
+                    <td>Special-Attack</td>
+                    <td><%= pokemon.stats[3]['special-attack'] %></td>
+                </tr>
+                <tr>
+                    <td>Special-Defense</td>
+                    <td><%= pokemon.stats[4]['special-defense'] %></td>
+                </tr>
+                <tr>
+                    <td>Speed</td>
+                    <td><%= pokemon.stats[5].speed %></td>
+                </tr>        
+            </table>
+        </div>
+    </div>
 
-<label>Name your Pokemon:</label>
-<input type="text" name="customName" autocomplete="off">
-
-<div>
-    <span>Available moves:</span>
-    <select id="movesSelected" name="moveSet" size="8" multiple>
-        <% pokemonData.moves.forEach(function(el) { %>
-            <option value="<%=el.move.name%>"><%=el.move.name%></option>
-        <% }) %>
-    </select>
-    <span id="submitMoves" class="material-symbols-outlined">
-        add_circle
-    </span>
-    <br><label>Selected Moves:</label>
-    <textarea id="showMovesChoice" type="text" style="height:64px"></textarea>
-    <input type="submit" value="Add Pokemon">
+    <div id="pokemon-moves">
+        <form method="POST" action="/pokemons/<%= pokemon.id %>/users/<%= account.googleId%>">
+            <div>
+                <label>Name your Pokemon:</label>
+                <input type="text" name="customName" autocomplete="off">
+            </div>
+            <div>
+                <span>Available moves:</span>
+                <select id="movesSelected" name="moveSet" size="8" multiple>
+                <% pokemonData.moves.forEach(function(el) { %>
+                    <option value="<%=el.move.name%>"><%=el.move.name%></option>
+                <% }) %>
+                </select>
+            
+                <span id="submitMoves" class="material-symbols-outlined">
+                    add_circle
+                </span>
+            </div>
+            <div>
+                <label>Selected Moves:</label>
+                <textarea id="showMovesChoice" type="text" style="height:64px"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Add Pokemon">
+            </div> 
+        </form>
+    </div>       
 </div>
-</form>
+</main>
 
 <%- include('../partials/footer') %>

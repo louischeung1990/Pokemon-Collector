@@ -1,10 +1,58 @@
+body {
+  background-image: url('../images/World_Map.jpg');
+}
+
+#new-trainer-card {
+  display: grid;
+  grid-template-columns: 500px 350px;
+  box-sizing: border-box;
+  height: 500px;
+  width: 850px;
+  border: 5px solid black;
+  border-radius: 5px;
+  background-color: aliceblue;
+  opacity: 0.85;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
+
+#new-trainer-card-left {
+  grid-column: 1;
+}
+
+#new-trainer-card-left h1 {
+  text-align: center;
+}
+
+#new-trainer-card-left h2 {
+  margin-left: 15px;
+}
+
+#enter-trainer-name {
+  text-align: center;
+}
+
+#submit-trainer-name {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#new-trainer-card-right {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .avatar {
     display:inline;
     height: 240px;
     width: 200px;
     margin: 30px 15px 15px 15px; 
-    border: 5px solid black;
-    border-radius: 5px;
+    border: 3px solid black;
+    border-radius: 3px;
     transition: width 0.5s, height 0.5s;
   }
   

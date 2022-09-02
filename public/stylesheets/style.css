@@ -3,12 +3,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
-}
-
-#login {
-  text-decoration: none;
-  font-size: 30px;
+  color: black;
 }
 
 #nav-bar-1 {
@@ -16,12 +11,16 @@ a {
   height: 100px;
   display: flex;
   align-items: center;
-  background-color: antiquewhite;
+  background-image: url('../images/Top_Banner_2.png');
+  background-size:contain;
+  opacity: 0.8;
+
 }
 
 #nav-title {
   font-size: 50px;
   margin-left: 100px;
+  font-family: 'Bebas Neue', cursive;
 }
 
 #nav-title-image {
@@ -31,9 +30,11 @@ a {
 
 #logout {
   text-decoration: none;
-  font-size: 26px;
+  font-size: 30px;
   margin-left: auto;
   margin-right: 50px;
+  text-shadow: 0px 0px 8px #ff0000;
+  background-color: #cccccc;
 }
 
 #nav-bar-2 {
@@ -48,7 +49,7 @@ a {
 }
 
 #nav-bar-2 a:hover {
-  text-shadow: 1px 1px black;
+  text-shadow: 1px 1px red;
 }
 
 .active {

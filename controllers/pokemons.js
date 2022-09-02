@@ -23,7 +23,7 @@ function index(req, res) {
             imageArray[i] = account.pokemonCollected[i].spriteSmall
             pkmnType[i] = account.pokemonCollected[i].type[0]
             url[i] = account.pokemonCollected[i].id
-            pkmnName[i] = account.pokemonCollected[i].name
+            pkmnName[i] = account.pokemonCollected[i].name.toUpperCase()
         }
         res.render('pokemons/index', { title: 'My Pokemon', account, noRows, imageArray, pkmnType,
          url, pkmnName})
